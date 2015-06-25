@@ -5,6 +5,8 @@ SaveLoad is a serialized file saving and loading system for Unity 5.x+ that I pu
 
 There are two load functions, and two save functions. First there's an uncompressed load, and save. Second theres a compressed version of the load and save functions that use the DotNetZip library. 
 
+This has been tested under Windows and Android, and should work on OSX and iOS as well as Linux.
+
 
 License
 =======
