@@ -43,13 +43,13 @@ public class FileIO : MonoBehaviour
     public void Load()
     {
         // Check if our file exists
-        if (File.Exists("savefile.dat"))
+        if (File.Exists(Application.persistentDataPath + "/savefile.dat"))
         {
             // Create a new binaryformatter
             BinaryFormatter bf = new BinaryFormatter();
 
             // Open our file
-            FileStream file = File.Open("savefile.dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/savefile.dat", FileMode.Open);
             // Deserialize the binary file, and cast it to our playerdata
             LoadTextFields data = (LoadTextFields)bf.Deserialize(file);
             // Close our file since we're done with it
@@ -72,13 +72,13 @@ public class FileIO : MonoBehaviour
     public void LoadCompressed()
     {
         // Check if our file exists
-        if (File.Exists("savefile.datz"))
+        if (File.Exists(Application.persistentDataPath + "/savefile.datz"))
         {
             // Load up a new memorystream
             using (MemoryStream m = new MemoryStream())
             {
                 // Open our compressed file into a ZipFile
-                using (ZipFile zipFile = new ZipFile("savefile.datz"))
+                using (ZipFile zipFile = new ZipFile(Application.persistentDataPath + "/savefile.datz"))
                 {
                     // This is the file inside the zipfile
                     ZipEntry zipEntry = zipFile["savefile"];
@@ -116,7 +116,7 @@ public class FileIO : MonoBehaviour
         BinaryFormatter bf = new BinaryFormatter();
 
         // Create our file
-        FileStream file = File.Create("savefile.dat");
+        FileStream file = File.Create(Application.persistentDataPath + "/savefile.dat");
         // Create our new serialed data field
         LoadTextFields data = new LoadTextFields();
 
@@ -140,7 +140,7 @@ public class FileIO : MonoBehaviour
     public void SaveCompressed()
     {
         // Create our file
-        FileStream file = File.Create("savefile.datz");
+        FileStream file = File.Create(Application.persistentDataPath + "/savefile.datz");
 
         // Create our new ZipFile
         using (ZipFile zipFile = new ZipFile())
